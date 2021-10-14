@@ -9,77 +9,38 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <link href="css/styles.css" rel="stylesheet">
   <script src="javascript/settings.js"></script>
-  <style>
-    #demotext{
-      border: 5px peru solid;
-      margin-bottom: 50px;
-      background-color: rgba(255, 140, 0, 0.432);
-      text-align: center;
-      padding-top: 10px;
-      font-size: 20px;
-      font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif';
-      font-weight: bold;
-      height: 200px;
-      word-wrap: break-word;
-    }
-    #demosize{
-      width: 90%;
-    }
-    #submit{
-      margin-top: 20px;
-    }
-  </style>
 </head>
-<body class="container" onload="activate()">
-  <div class="row" id = "nav">
-    <nav class="navbar-dark sticky-top bg-dark navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="practice.html">Practice</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="settings.html">Settings</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
+<body class="container" onload="startlistening()">
   <div class="row">
     <div class="col" id = "demotext">
-      A_<wbr>quick_<wbr>brown_<wbr>box_<wbr>quickly_<wbr>jumps_<wbr>over_<wbr>a_<wbr>lazy_<wbr>chicken._<wbr>Oh_<wbr>poor_<wbr>chicken_<wbr>but_<wbr>the_<wbr>fittest_<wbr>survives_<wbr>hence_<wbr>you_<wbr>shoukd_<wbr>be_<wbr>workout_<wbr>daily.
+      A_<wbr>quick_<wbr>brown_<wbr>box_<wbr>quickly_<wbr>jumps_<wbr>over_<wbr>a_<wbr>lazy_<wbr>chicken._<wbr>Oh_<wbr>poor_<wbr>chicken_<wbr>but_<wbr>the_<wbr>fittest_<wbr>survives_<wbr>hence_<wbr>you_<wbr>should_<wbr>be_<wbr>workout_<wbr>daily.
     </div>
   </div>
-  <div class = "row">
+  <div class = "row" id = "settingpanel">
     <div class="col-8">
       <input type="range" min="20" max="40" value="20" step="1" id="demosize"/>
     </div>
     <div class="col-2">
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Select Font
+          Select Font :)
         </button>
         <div class="dropdown-menu" id="demofont" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">sans-serif</a>
-          <a class="dropdown-item" href="#">Lucida Sans</a>
-          <a class="dropdown-item" href="#">Arial</a>
-          <a class="dropdown-item" href="#">Lucida Grande</a>
-          <a class="dropdown-item" href="#">Lucida Sans Unicode</a>
+          <a class="dropdown-item" href="">Times New Roman</a>
+          <a class="dropdown-item" href="">Lucida Sans</a>
+          <a class="dropdown-item" href="">Arial</a>
+          <a class="dropdown-item" href="">Lucida Grande</a>
+          <a class="dropdown-item" href="">Lucida Sans Unicode</a>
         </div>
       </div>
     </div>
     <div class="col-2">
-      <input type="checkbox" id="demobold" name="fontbold" value="true">
-      <label for="fontbold"> Bold</label>
+      <input type="checkbox" id="demobold" name="fontbold" value="true" checked>
+      <label class="demoboldc" for="fontbold"> Bold</label>
     </div>
   </div>
-  <div class="row">
-    <input type="button" id="submit" value="Click to Apply" onclick="load()">
+  <div class="row justify-content-around" id="submitbutt">
+    <input type="button" id="submit" value="Save Changes" onclick="apply()">
   </div>
 </body>
 </html>

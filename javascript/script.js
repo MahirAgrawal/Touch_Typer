@@ -1,12 +1,12 @@
 function dummy(){
-  console.log(document.getElementById("input-area").parentElement);
+  console.log(document.getElementById("top-text").parentElement);
   console.log("clientwidth: " + document.getElementById("input-area").clientWidth);
   // var msg = new SpeechSynthesisUtterance("comma");
   // window.speechSynthesis.speak(msg);
 }
 
 function printdummy(e){
-  console.log(e);
+  console.log("top-text....");
   document.getElementById("input-area-container").style.borderColor = "white";
 }
 
@@ -18,28 +18,24 @@ function printdummy(e){
 //error : counts the errors made
 //is_user_correct : stores if user entered the right character in first time only
 var type = {};
+type.matches = 0;
 type.p = 0;
 type.start_t = -1;
 type.end_t = -1;
 type.error = 0;
 type.is_user_correct = [];
 
-//custom caret made for user
-// var caret  = {};
-// caret.caretBlinkInterval = 400;
-// caret.color = "purple";
+var border_color = ["white","black"];
 
+//to check if site is refreshed or focus is out
 var firsttime = true;
+
 async function check(){
+  // console.log(border_color);
   if(window.navigator.onLine){
     if(firsttime){
-      firsttime = false;
-      // if(sessionStorage.getItem("demosize") === null){
-        //   sessionStorage.setItem("demosize",20);
-        //   sessionStorage.setItem("demofont","Lucida Sans Unicode");
-      //   sessionStorage.setItem("demobold",true);
-      // }
       await init();
+      firsttime = false;
     }
     else{
       await nextQuote();
@@ -55,9 +51,10 @@ async function check(){
 //awaits for quote to load through another async function getQuote and hence the other async returns implicit promise when fullfilled 
 async function init(){
   await nextQuote();
-  document.getElementById("top-text").innerHTML = "Click to Start...";
-  document.getElementById("input-area").addEventListener("click",onfocusin);  
-  document.getElementById("top-text").addEventListener("click",onfocusin);  
+  document.getElementById("input-area").style.borderColor = border_color[0];
+  document.getElementById("input-area").style.filter = "blur(5px)";
+  document.getElementById("top-text").addEventListener("click",onfocusin);
+  document.getElementById("top-text").innerHTML = "Click To Start...";
 }
 
 async function nextQuote(){
@@ -70,12 +67,9 @@ async function nextQuote(){
   for(var i = 0;i < type.str.length;i++){
     type.is_user_correct[i] = -1;
   }
-  // document.getElementById("input-area").style.fontSize = sessionStorage.getItem("demosize")+"px";
-  // console.log(sessionStorage.getItem("demosize"));
-  // document.getElementById("input-area").style.fontFamily = sessionStorage.getItem("demofont");
-  // document.getElementById("input-area").style.fontWeight = sessionStorage.getItem("demobold")?"bold":"normal";
+  // console.log(sessionStorage.getItem("demosize") + " " + sessionStorage.getItem("demofont"));
   // caret.caret = setInterval(blink,caret.caretBlinkInterval);
-  console.log(type.is_user_correct);
+  // console.log(type.is_user_correct);
 }
 
 
@@ -83,45 +77,40 @@ async function nextQuote(){
 //adds the mutiple events and removes the click event from top-text 
 //also adds the focus-out and focus-in event to differentiate between typing and not typing 
 async function onfocusin(e){
-  // e.stopPropagation();
-  console.log(e);
+  // console.log("ha: " + e.currentTarget);
   if(type.start_t == -1){
     type.start_t = performance.now();
   }
 
   //attributes
-  document.getElementById("input-area-container").style.borderColor = "black";
-  document.getElementById("top-text").innerHTML = "";
   document.getElementById("input-area").style.filter = "none";
+  document.getElementById("input-area").style.borderColor = border_color[1];
   
-  //events
-  document.getElementById("input-area").removeEventListener("click",onfocusin);
-  document.getElementById("top-text").removeEventListener("click",onfocusin);  
+  //removing the top-text div itself
+  top_ = $("#top-text").clone();
+  $("#top-text").remove();
+  
   document.getElementById("input-area").focus();
-
   document.getElementById("input-area").addEventListener("focusout",onfocusout);
-  document.getElementById("input-area").addEventListener("focusin",onfocusin);
   document.getElementById("input-area").addEventListener("keydown",getKeyValue);
 }
 
 //function to change attributes and events when text-area is out of focus
 //removes the events attached to text-area
 //adds the event attached to top-text
-async function onfocusout(){
-  console.log("i am out of focus");
+async function onfocusout(e){
+  // console.log("i am out of focus" + e);
 
   //attributes
-  document.getElementById("input-area-container").style.borderColor = "none";
-  document.getElementById("input-area").style.filter = "blur(2px)";
-  document.getElementById("top-text").innerHTML = "Click to Start...";
+  document.getElementById("input-area").style.borderColor = border_color[0];
+  top_.appendTo($("#input-area-container"));
+  document.getElementById("input-area").style.filter = "blur(5px)";
 
   //events
   document.getElementById("input-area").removeEventListener("focusout",onfocusout);
-  document.getElementById("input-area").removeEventListener("focusin",onfocusin);
   document.getElementById("input-area").removeEventListener("keydown",getKeyValue);
   // clearInterval(caret.caret);
   await check();
-  document.getElementById("input-area").addEventListener("click",onfocusin);
   document.getElementById("top-text").addEventListener("click",onfocusin);  
 }
 
@@ -171,48 +160,49 @@ async function getKeyValue(e){
     }
   }
   if(type.p == type.str.length){
-    console.log("completed");
-    console.log(document.getElementById("input-area").style.fontSize);
+    // console.log("completed");
+    // console.log(document.getElementById("input-area").style.fontSize);
+    ++type.matches;
+
     //temporary suspend all events until next quote is loaded
     document.getElementById("input-area").removeEventListener("keydown",getKeyValue);
     document.getElementById("input-area").removeEventListener("focusout",onfocusout);
-    document.getElementById("input-area").removeEventListener("focusin",onfocusin);
   
     type.end_t = performance.now();
-    var result = "";
-    result += ((type.end_t-type.start_t)/1000);
+    let time_ = ((type.end_t-type.start_t)/60000);
     for(var i = 0;i < type.str.length;i++)//counting errors
       if(!type.is_user_correct[i])
         type.error++;
-    result += "<br>";
-    result += ("Errors: " + type.error);
-    result += "<br>";
-    result += "Gross WPM: " + Math.trunc(((type.str.length+type.error)/5)/((type.end_t-type.start_t)/60000));
-    result += "<br>";
-    result += "Net WPM: " + Math.trunc(((type.str.length+type.error)/5)/((type.end_t-type.start_t)/60000) - type.error*60000/(type.end_t-type.start_t));
-    document.getElementById("result").innerHTML = result;
-    // clearInterval(caret.caret);
-    
+    // console.log(time_);
+    // console.log(Math.trunc(((type.str.length+type.error)/5)/time_));
+    // console.log(Math.trunc((((type.str.length+type.error)/5)-type.error)/time_));
+    document.getElementById("Matches").innerHTML = "Total Matches: " + type.matches;
+    document.getElementById("Errors").innerHTML = "Current Errors: " + type.error;
+    document.getElementById("GrossWPM").innerHTML = "Gross WPM: " + Math.trunc(((type.str.length+type.error)/5)/time_);
+    document.getElementById("NetWPM").innerHTML= "Net WPM: " + Math.trunc((((type.str.length+type.error)/5)-type.error)/time_);
+
     //suspended keydown event gets started only after next quote is displayed
     await check();
     type.start_t = performance.now();
-    console.log("next: " + type.start_t);
+    // console.log("next: " + type.start_t);
     document.getElementById("input-area").addEventListener("focusout",onfocusout);
-    document.getElementById("input-area").addEventListener("focusin",onfocusin);
     document.getElementById("input-area").addEventListener("keydown",getKeyValue);  
   }
 }
 
 let url = "https://type.fit/api/quotes";
+var quotes;
 //get the quotes array from api provided by type.fit url
 async function getQuote(display){
-  var obj = await fetch(url)
-  .then(response => response.json())
-  .catch(e => console.log(e.message));
-  console.log(obj.length);
+  
+  if(firsttime){
+    quotes = await fetch(url)
+    .then(response => response.json())
+    .catch(e => console.log(e.message));
+  }
   
   //parsing the string to display
-  var str = obj[Math.floor(Math.random() * (obj.length + 1))].text + " " + obj[Math.floor(Math.random() * (obj.length + 1))].text + " " + obj[Math.floor(Math.random() * (obj.length + 1))].text;
+  var str = quotes[Math.floor(Math.random() * (quotes.length + 1))].text + " " + quotes[Math.floor(Math.random() * (quotes.length + 1))].text + " " + quotes[Math.floor(Math.random() * (quotes.length + 1))].text;
   str = str.replaceAll(' ','_');
   var new_str = "";
   for(var i = 0;i < str.length;i++){
@@ -226,11 +216,19 @@ async function getQuote(display){
     if(str[i] == '_')
       new_str += "<wbr>";
   }
-  console.log(new_str);
+  // console.log(new_str);
   // console.log(sessionStorage.getItem("demosize"));
   // display.style.fontSize = sessionStorage.getItem("demosize")+"px";
   display.style.height = "max-content";
   display.innerHTML = new_str;
+  document.getElementById("input-area").style.fontSize = sessionStorage.getItem("demosize")+"px";
+  document.getElementById("input-area").style.fontFamily = sessionStorage.getItem("demofont");
+  document.getElementById("input-area").style.fontWeight = sessionStorage.getItem("demobold") == "true"?"bold":"";
+
+  //dynamically changing parent div and top-text height 
+  document.getElementById("input-area-container").style.height = window.getComputedStyle(display).getPropertyValue("height");
+  if(document.getElementById("top-text") != null)
+    document.getElementById("top-text").style.height = window.getComputedStyle(display).getPropertyValue("height");
   type.str = str;
 }
 

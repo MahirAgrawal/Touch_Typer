@@ -4,30 +4,70 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <link href="css/styles.css" rel="stylesheet">
-  <script src="javascript/script.js"></script>
+  <script src="javascript/settings.js"></script>
   <title>Document</title>
-</head>
+  <style>
+    .col{
+      margin: 50px;
+      padding: 30px;
+      height: max-content;
+      width: 100%;
+      border-radius: 30px;
+      border-width: 5px;
+      border-style: solid;
+      background-color: #040f6ee6;
+      text-align: center;
+      word-wrap: break-word;
+      color:white;
+      font-size: 30px;
+      font-family: sans-serif;
+    }
+    #title{
+      font-size: 50px;
+      font-weight: bold;
+    }
+    #submit{
+      font-size: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
 
+    #submit:hover{
+      color: white;
+      border-color: #040f6ee6;
+      background-color: #040f6ee6;
+    }
+  </style>
+</head>
 <body class="container">
-  <div class="row" id="nav">
-    <nav class="navbar-dark sticky-top bg-dark navbar-expand-lg">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="practice.html">Practice</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <div class="row align-content-around">
+    <div class="col" id = "title">
+      WELCOME TO TOUCH TYPER &#128512;	
+    </div>
+  </div>
+  <div class="row align-content-around">
+    <div class="col">
+      Touch typing is a style of typing. 
+      Although the phrase refers to typing without using the sense of sight to find the keys—specifically, a touch typist will know their location on the keyboard through muscle memory.<wbr>
+      This involves placing the eight fingers in a horizontal row along the middle of the keyboard (the home row) and having them reach for specific other keys.<wbr> 
+      Under this usage, typists who do not look at the keyboard but do not use home row either are referred to as hybrid typists. 
+      Both two-handed touch typing and one-handed touch typing are possible.
+    </div>
+  </div>
+  <div class="row align-content-around">
+    <div class="col">
+      Touch type training can improve an individual's typing speed and accuracy dramatically.
+      Speeds average around 30–40 WPM (words per minute), while a speed of 60–80 WPM is the approximate speed to keep up with one's thoughts. 
+      <br><br>A Microsoft survey suggested that many managers expect employees to be able to type at a minimum of 50 WPM. 
+      Professional career typists can exceed 100 WPM repeatedly and continuously (secretarial, data entry, etc.). 
+      Routine practice is required to maintain a high typing speed and accuracy. 
+      <br><br>That's where come our product. You can use to do practice on regular text. Best of luck!!!
+    </div>
+  </div>
+  <div class="row justify-content-around">
+    <input id="submit" type="button" value="Start Practice" onclick="activate()"/>
   </div>
 </body>
 

@@ -1,44 +1,69 @@
 body{
-  background-color: #aad4e6;
+  background-color: #f0d573;
 }
 
 #nav{
   margin-top: 10px;
   margin-bottom: 50px;
+  background-color: #040f6ee6;
+  color: whitesmoke;
+  font-size: 30px;
 }
 
 #input-area-container{
-  border: 3px black solid;
-  margin-top: 60px;
+  position: relative;
+  margin-top: 100px;
+  width: 100%; 
 }
 
-#result{
-  text-align: center;
-  color: blueviolet;
-}
 
 #input-area{
-  padding-top: 40px;
-  padding-bottom: 20px;
-  width:500px;
-  background-color: rgba(255, 140, 0, 0.432);
+  position: absolute;
+  padding: 30px;
+  width: 100%;
+  border-radius: 30px;
+  border-width: 5px;
+  border-style: solid;
+  background-color: #040f6ee6;
   text-align: center;
-  font-size: 20px;
-  font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif';
-  font-weight: bold;
-  filter: blur(2px);
+  filter: blur(30px);
   word-wrap: break-word;
+  color:white;
+  pointer-events: none;
 }
 
 #top-text{
-  color: black;
+  color: whitesmoke;
   position: absolute;
   z-index: 1;
-  margin-top: 3%;
-  margin-left: 25%;
-  font-size: 3em;
+  font-size: 40px;
+  width: 100%;
+  padding-left:35%;
+  padding-top:5%;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
+  /* pointer-events: none; */
+}
+ 
+#Matches,
+#Errors,
+#GrossWPM,
+#NetWPM{
+  font-size: 30px;
+}
+
+#result{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 30px;
+  border-width: 5px;
+  border-style: solid;
+  height: 100px;
+  background-color: #040f6ee6;
+  margin-top: 10px;
+  text-align: center;
+  color: whitesmoke;
 }
 
 #correct{
@@ -51,7 +76,61 @@ body{
 }
 
 #blink{
-  color: white;
-  background-color: black;
+  color:black;
+  background-color: yellow;
   max-width: 1em;
+}
+
+/* settings css */
+#demotext{
+  margin-top: 100px;
+  margin-bottom: 50px;
+  text-align: center;
+  padding-top: 10px;
+  height: 200px;
+  word-wrap: break-word;
+  border-radius: 30px;
+  border-width: 5px;
+  border-style: solid;
+  background-color: #040f6ee6;
+  color: white;
+}
+#demosize{
+  width: 90%;
+}
+#demobold{
+  margin-left:15px;
+}
+
+.demoboldc{
+  border-radius: 10px;
+  border-width: 4px;
+  border-color: #040f6ee6;
+  border-style: solid;
+  font-size: 20px;
+}
+
+.demoboldc,.btn,.dropdown-item,.dropdown-menu{
+  background-color: #040f6ee6;
+  color: whitesmoke;
+}
+
+#submitbutt{
+  margin-top: 60px;
+}
+
+#submit{
+  font-size: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#submit:hover{
+  color: white;
+  border-color: #040f6ee6;
+  background-color: #040f6ee6;
+}
+
+#settingpanel{
+  margin-top: 100px;
 }

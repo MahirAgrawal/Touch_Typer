@@ -3,17 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>Project001</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <link href="css/styles.css" rel="stylesheet">
   <script src="javascript/script.js"></script>
 </head>
 
 <body class="container" onload="dummy();check()">
   <div class="row" id = "nav">
-    <nav class="navbar-dark sticky-top bg-dark navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar-dark sticky-top navbar-expand-lg">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -31,11 +29,16 @@
       </div>
     </nav>
   </div>
-  <div class="row" id="input-area-container">
-    <div class="col" id="input-area" tabindex="-1"></div>
-    <div class="row" id="top-text"></div>
+  <div id="input-area-container">
+    <div id="input-area" tabindex="-1"></div>
+    <div id="top-text"></div>
   </div>
-  <div class="row justify-content-between" id="result"></div>
+  <div id="result">
+    <div id = "Matches">Matches: 0</div>
+    <div id = "Errors">Error: None</div>
+    <div id = "GrossWPM">Gross WPM: 0</div>
+    <div id = "NetWPM">Net WPM: 0</div>
+  </div>
 </body>
 
 </html>

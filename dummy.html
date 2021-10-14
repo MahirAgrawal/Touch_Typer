@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Project001</title>
+  <script>
+    function init(){
+      document.getElementById("top").addEventListener("click",top_);
+      document.getElementById("parent").addEventListener("click",parent);
+      document.getElementById("bottom").addEventListener("click",bottom);
+    }
+
+    function top_(){
+      console.log("top is clicked");
+    }
+
+    function bottom(){
+      console.log("bottom is clicked");
+    }
+
+    function parent(){
+      console.log("parent is clicked");
+    }
+  </script>
+</head>
+
+<style>
+  #parent{
+    position: relative;
+    height:50px;
+    width: 400px;
+    background-color: blue;
+  }
+
+  #top{
+    position: absolute;
+    height:40px;
+    width: 400px;
+    background-color: red;
+  }
+  #bottom{
+    z-index: 1;
+    margin: auto;
+    position: absolute;
+    height:50px;
+    width: 400px;
+    background-color: yellow;
+  }
+
+</style>
+
+<body onload="init()">
+  <div id="parent">
+    <div id="top"></div>
+    <div id="bottom"></div>
+  </div>
+</body>
+
+</html>
