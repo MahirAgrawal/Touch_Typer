@@ -67,12 +67,12 @@ body{
 }
 
 #correct{
-  color:green;
+  color: rgb(41, 197, 41);
 }
 
 
 #incorrect{
-  color:red;
+  color:rgb(211, 7, 7);
 }
 
 #blink{
