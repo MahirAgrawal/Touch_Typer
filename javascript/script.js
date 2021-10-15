@@ -30,6 +30,13 @@ var border_color = ["white","black"];
 //to check if site is refreshed or focus is out
 var firsttime = true;
 
+//object to store last results
+var last_stats = {};
+last_stats.error = 1000000;
+last_stats.GrossWPM = 0;
+last_stats.NetWPM = 0;
+
+
 async function check(){
   // console.log(border_color);
   if(window.navigator.onLine){
@@ -177,9 +184,32 @@ async function getKeyValue(e){
     // console.log(Math.trunc(((type.str.length+type.error)/5)/time_));
     // console.log(Math.trunc((((type.str.length+type.error)/5)-type.error)/time_));
     document.getElementById("Matches").innerHTML = "Total Matches: " + type.matches;
-    document.getElementById("Errors").innerHTML = "Current Errors: " + type.error;
-    document.getElementById("GrossWPM").innerHTML = "Gross WPM: " + Math.trunc(((type.str.length+type.error)/5)/time_);
-    document.getElementById("NetWPM").innerHTML= "Net WPM: " + Math.trunc((((type.str.length+type.error)/5)-type.error)/time_);
+    
+    if(last_stats.error < type.error){
+      document.getElementById("Errors").innerHTML = "Current Errors: <span id = \"incorrect\">" + type.error + "</span>";
+    }
+    else{
+      document.getElementById("Errors").innerHTML = "Current Errors: <span id = \"correct\">" + type.error + "</span>";
+    }
+
+    if(last_stats.GrossWPM < Math.trunc(((type.str.length+type.error)/5)/type.time_)){
+      document.getElementById("GrossWPM").innerHTML = "Gross WPM: <span id = \"correct\">" + Math.trunc(((type.str.length+type.error)/5)/type.time_) + "</span>";
+    }
+    else{
+      document.getElementById("GrossWPM").innerHTML = "Gross WPM: <span id = \"incorrect\">" + Math.trunc(((type.str.length+type.error)/5)/type.time_) + "</span>";
+    }
+
+    if(last_stats.NetWPM < Math.trunc((((type.str.length+type.error)/5)-type.error)/type.time_)){
+      document.getElementById("NetWPM").innerHTML= "Net WPM: <span id = \"correct\">" + Math.trunc((((type.str.length+type.error)/5)-type.error)/type.time_) + "</span>";
+    }
+    else{
+      document.getElementById("NetWPM").innerHTML= "Net WPM: <span id = \"incorrect\">" + Math.trunc((((type.str.length+type.error)/5)-type.error)/type.time_) + "</span>";
+    }
+    
+    //collecting last typing statistics for comparison
+    last_stats.error = type.error;
+    last_stats.GrossWPM = Math.trunc(((type.str.length+type.error)/5)/type.time_);
+    last_stats.NetWPM = Math.trunc((((type.str.length+type.error)/5)-type.error)/type.time_);
 
     //suspended keydown event gets started only after next quote is displayed
     await check();
