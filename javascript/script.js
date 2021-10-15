@@ -169,7 +169,7 @@ async function getKeyValue(e){
     document.getElementById("input-area").removeEventListener("focusout",onfocusout);
   
     type.end_t = performance.now();
-    let time_ = ((type.end_t-type.start_t)/60000);
+    type.time_ = ((type.end_t-type.start_t)/60000);
     for(var i = 0;i < type.str.length;i++)//counting errors
       if(!type.is_user_correct[i])
         type.error++;
