@@ -12,3 +12,5 @@ Also you can use setting:
 
 Touch Typing is a crucial skill so have it. 
 So wish you luck for more than 60 WPM soon!! 😄
+
+WEBSITE: https://mahiragrawal.github.io/Touch_Typer/
