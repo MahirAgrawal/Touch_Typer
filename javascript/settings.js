@@ -4,7 +4,7 @@ function activate(){
     sessionStorage.setItem("demofont","Lucida Sans Unicode");
     sessionStorage.setItem("demobold","false");
   }
-  window.location.href = "practice.html";
+  window.location.href = "index.html";
 }
 
 function startlistening(){
@@ -58,5 +58,5 @@ function apply(){
     arr[i].removeEventListener("click",getFont);
   }
   document.getElementById("demobold").removeEventListener("click",isBold);
-  window.location.href = "practice.html";
+  window.location.href = "index.html";
 }
