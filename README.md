@@ -9,7 +9,8 @@ https://mahiragrawal.github.io/Touch_Typer
 #### <u>Motivation behind making:</u>
 Majority of the apps and websites which are made for this having either of two problems:
 1) Ads are everywhere on the page and large js files which makes site deadly slow
-#### For comparison, my website load faster than 90% of the popular touch typing website(metrics checked on https://tools.pingdom.com/)
+#### For comparison, my website loads faster than two of the popular touch typing website keybr and type racer(metrics checked on https://tools.pingdom.com/)
+
 2) Also many of the professional version of these apps give practice for the words which don't exist, like you would never encounter 'aaaaa' in real life.
 
 So i have tried to keep this one as <u>optimized and minimal</u> as possible. 
